@@ -1,17 +1,31 @@
+// Import the react and reactDom libraries
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+//import review
+import Review from './Review';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+// get a reference to the rood div in the index.html file and takes control of the root
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const el = document.getElementById('root');
+const root = ReactDOM.createRoot(el)
+
+
+// create a component
+function App(){
+   return(
+      <>
+      <Review username="Zach"
+         rating={3}
+         text="Burgers are great" />
+
+      <Review username="Tim"
+         rating={2}
+         text="Hot dogs are great" />
+      
+      
+      </>
+   )
+}
+
+//show the component on screen
+root.render(<App />)
