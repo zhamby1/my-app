@@ -1,5 +1,6 @@
 // Import the react and reactDom libraries
 import React from 'react';
+import { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 //import review
 import Review from './Review';
@@ -11,21 +12,55 @@ const root = ReactDOM.createRoot(el)
 
 
 // create a component
-function App(){
+function Movie(){
+   
+   const [movie, setMovie] = useState({
+      title: "Inception",
+      rating: "PG-13",
+      releaseYear: 2010
+   })
+
+   function changeTitle(){
+      setMovie(prevState => ({
+         ...prevState, title:"Titanic"
+      }))
+   }
+
+   function changeMovie(){
+      setMovie({
+         title:"Lion King",
+         rating: "PG",
+         releaseYear: 1996
+      })
+   }
+
+
+
    return(
       <>
-      <Review username="Zach"
-         rating={3}
-         text="Burgers are great" />
+         <h1>Favorite Movie</h1>
+         <p>
+            {movie.title}, {movie.rating}, {movie.releaseYear}
+         </p>
+         <button onClick={changeTitle}>
+            Change Title
+         </button>
 
-      <Review username="Tim"
-         rating={2}
-         text="Hot dogs are great" />
-      
-      
+         <button onClick={changeMovie}>
+            Change Movie
+         </button>
       </>
    )
 }
 
+
+
+   
+
+function App() {
+   return (
+      <Movie />
+   );
+}
 //show the component on screen
 root.render(<App />)
