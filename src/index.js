@@ -12,31 +12,53 @@ const root = ReactDOM.createRoot(el)
 
 
 // create a component
+function RegistrationForm() {
+   const [inputs, setInputs] = useState({});
 
-function CourseList() {
-   const courses = [
-      { id: 1, title: "African History", area: "History" },
-      { id: 2, title: "Greek II", area: "History" }, 
-      { id: 3, title: "Basic Chemistry", area: "Science" }
-   ];
+   function handleSubmit(event) {
+      event.preventDefault();
+      alert(`Username: ${inputs.username}\nEmail: ${inputs.email}`);
+   }
+
+   function handleChange(event) {
+      const name = event.target.name;
+      const value = event.target.value;
+      setInputs(values => ({...values, [name]: value}));
+   }
 
    return (
-      <ol>
-         {courses.map(course => 
-            <li key={course.id}>
-               <p>{course.title}</p>
-               <p>{course.area}</p>
-            </li>)}
-      </ol>
+      <form onSubmit={handleSubmit}>
+         <p>
+            <label htmlFor="username">
+               Username?
+            </label>
+            <input 
+               type="text" 
+               id="username"
+               name="username"
+               value={inputs.username || ""}
+               onChange={handleChange} />
+         </p>
+         <p>
+            <label htmlFor="email">
+               Email?
+            </label>
+            <input 
+               type="text" 
+               id="email"
+               name="email"
+               value={inputs.email || ""}
+               onChange={handleChange} />
+         </p>
+         <input type="submit" value="Register" />
+      </form>
    );
 }
-
-
    
 
 function App() {
    return (
-      <CourseList />
+      <RegistrationForm />
    );
 }
 //show the component on screen
