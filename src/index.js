@@ -12,54 +12,31 @@ const root = ReactDOM.createRoot(el)
 
 
 // create a component
-function Movie(){
-   
-   const [movie, setMovie] = useState({
-      title: "Inception",
-      rating: "PG-13",
-      releaseYear: 2010
-   })
 
-   function changeTitle(){
-      setMovie(prevState => ({
-         ...prevState, title:"Titanic"
-      }))
-   }
+function CourseList() {
+   const courses = [
+      { id: 1, title: "African History", area: "History" },
+      { id: 2, title: "Greek II", area: "History" }, 
+      { id: 3, title: "Basic Chemistry", area: "Science" }
+   ];
 
-   function changeMovie(){
-      setMovie({
-         title:"Lion King",
-         rating: "PG",
-         releaseYear: 1996
-      })
-   }
-
-
-
-   return(
-      <>
-         <h1>Favorite Movie</h1>
-         <p>
-            {movie.title}, {movie.rating}, {movie.releaseYear}
-         </p>
-         <button onClick={changeTitle}>
-            Change Title
-         </button>
-
-         <button onClick={changeMovie}>
-            Change Movie
-         </button>
-      </>
-   )
+   return (
+      <ol>
+         {courses.map(course => 
+            <li key={course.id}>
+               <p>{course.title}</p>
+               <p>{course.area}</p>
+            </li>)}
+      </ol>
+   );
 }
-
 
 
    
 
 function App() {
    return (
-      <Movie />
+      <CourseList />
    );
 }
 //show the component on screen
